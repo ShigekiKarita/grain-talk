@@ -1,0 +1,370 @@
+%% \documentclass[unicode, 11pt]{beamer}
+%% \usepackage{luatexja}
+%% \usepackage[ipaex]{luatexja-preset}
+
+%%%%%%%%%% for uplatex users %%%%%%%
+\documentclass[aspectratio=169,
+  14pt,xcolor=dvipsnames,table,professional font,dvipdfmx]{beamer}
+%\usepackage[uplatex,deluxe]{otf}
+\usepackage{bxdpx-beamer}
+\usepackage{pxjahyper}
+\usepackage{minijs}
+\usepackage{pgf}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage{listinglangd}
+\usepackage{color}
+\usepackage{comment}
+%\usepackage{dejavu}
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\usepackage{etoolbox}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\newtoggle{InString}{}% Keep track of if we are within a string
+\togglefalse{InString}% Assume not initally in string
+
+\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{mygreen}#1}}%
+\newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
+\lstset{literate=%
+    {"}{{{\ProcessQuote{"}}}}1% Disable coloring within double quotes
+    {'}{{{\ProcessQuote{'}}}}1% Disable coloring within single quote
+    {0}{{{\ColorIfNotInString{0}}}}1
+    {1}{{{\ColorIfNotInString{1}}}}1
+    {2}{{{\ColorIfNotInString{2}}}}1
+    {3}{{{\ColorIfNotInString{3}}}}1
+    {4}{{{\ColorIfNotInString{4}}}}1
+    {5}{{{\ColorIfNotInString{5}}}}1
+    {6}{{{\ColorIfNotInString{6}}}}1
+    {7}{{{\ColorIfNotInString{7}}}}1
+    {8}{{{\ColorIfNotInString{8}}}}1
+    {9}{{{\ColorIfNotInString{9}}}}1
+}
+
+\lstset{ %
+  frame=single,
+  backgroundcolor={\color{white}\pgfsetfillopacity{0.7}},
+  %xleftmargin=.05\textwidth, %xrightmargin=.1\textwidth,
+  %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
+  %basicstyle=\tiny\ttfamily,                % the size of the fonts that are used for the code
+  basicstyle=\footnotesize\ttfamily,
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  % frame=single,	              % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{mymauve},       % keyword style
+  language={D},                 % the language of the code
+  %morekeywords={*,...},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,	                     % sets default tabsize to 2 spaces
+  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+}
+
+\AtBeginSection[]{
+    \begin{frame}
+        \tableofcontents[currentsection]
+    \end{frame}
+}
+
+
+%\renewcommand{\kanjifamilydefault}{\gtdefault}% 既定をゴシック体に
+\usepackage{default}
+
+%\usepackage{biblatex}
+
+\usepackage[style=authoryear]{biblatex}
+\renewcommand*{\nameyeardelim}{\addcomma\addspace}
+%\bibliographystyle{IEEEbib}
+\bibliography{refs}
+
+
+%\usetheme{metropolis}           % Use metropolis theme
+\usepackage{theme}
+
+%\usecolortheme{dove}
+\usecolortheme{orchid}
+\usepackage{transparent}
+
+%% NOTE: colors http://www2.informatik.uni-freiburg.de/~frank/latex-kurs/latex-kurs-3/farben/Extra-Farben.pdf
+\setbeamertemplate{frametitle}{\vspace{0.5em}\color{black}\insertframetitle}
+\setbeamercolor*{normal text}{fg=black,bg=white}
+\setbeamercolor*{alerted text}{fg=Plum}
+\setbeamercolor*{example text}{fg=MidnightBlue} % VioletRed}
+\setbeamercolor*{structure}{fg=black}
+%% setting for blocks without box
+%\setbeamercolor*{block title}{parent=structure}
+\setbeamerfont{block title}{size={}}
+
+
+%\usetheme{Madrid}
+\title{grain}
+\subtitle{D Language Library for Deep Learning}
+\date{4. Oct. 2018}
+\author{Shigeki Karita}
+\institute{ML Meetup KANSAI \#3}
+\begin{document}
+
+% タイトル用の背景
+\usebackgroundtemplate{%
+  \begin{picture}(100,300)
+  \includegraphics[height=0.8\paperheight]{fig/grain2.pdf}
+  \end{picture}
+}
+
+
+\maketitle
+
+\usebackgroundtemplate{%
+  \includegraphics[height=\paperheight]{fig/grain_more_opac.pdf}
+}
+
+
+%% \begin{frame}{Table of contents}
+%%   \tableofcontents
+%% \end{frame}
+
+%\section{Why D}
+\begin{frame}{\alert{D L}anguage for \alert{D}eep \alert{L}earning}
+  \begin{alertblock}{great language}
+    \begin{itemize}
+    \item \textbf{like C++}: fast, strongly typed, LLVM/GCC backend
+    \item \textbf{like Python}: simple, lightweight, jupyter support\footnote{\url{https://github.com/kaleidicassociates/jupyterd}}
+    \end{itemize}
+  \end{alertblock}
+  %\pause
+  \begin{exampleblock}{great libraries}
+    \begin{itemize}
+    \item \textbf{mir}: N-D slice algorithm\footnote{\url{https://github.com/libmir/mir-algorithm}},
+      zero-cost numpy conversion\footnote{\url{https://github.com/ShigekiKarita/mir-pybuffer}}
+    \item \textbf{dcompute}: CUDA kernel DSL\footnote{\url{https://github.com/libmir/dcompute}}
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}{grain}
+  \begin{alertblock}{deep learning framework for D language}
+    \begin{itemize}
+    \item \alert{\url{https://github.com/ShigekiKarita/grain}}
+    \item boost software license 1.0
+    \end{itemize}
+  \end{alertblock}
+  \begin{exampleblock}{philosophy}
+    \begin{itemize}
+    \item \textbf{DYNAMIC}: like chainer and pytorch
+    \item \textbf{SAFE}: statically typed variable and function
+    \item \textbf{LIGHT}: simple like Python, small like C++
+    \item \textbf{FAST}: mir and CUDA backend
+    \end{itemize}
+  \end{exampleblock}
+\end{frame}
+
+\begin{frame}[fragile]{grain is \alert{dynamic}}
+like chainer ...
+  \begin{lstlisting}[language=D]
+foreach (epoch; 0 .. 10) {
+  foreach (i; niter.permutation) {
+    auto xs = inputs[i].variable;
+    auto ts = targets[i].variable;
+    auto ys = model(xs);
+    auto loss = crossEntropy(ys, ts);
+    auto acc = accuracy(ys, ts);
+    model.zeroGrad();
+    loss.backward();
+    optimizer.update();
+  }
+}\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{grain is \alert{dynamic}}
+like chainer \alert{but statically typed and optimized.}
+  \begin{lstlisting}[language=D,basicstyle=\footnotesize\ttfamily]
+foreach (epoch; 0 .. 10) {
+  foreach (i; niter.permutation) {
+    Variable!(float, 3, HostStorage) xs = inputs[i].variable;
+    Variable!(int, 1, HostStorage) ts = targets[i].variable;
+    Variable!(float, 2, HostStorage) ys = model(xs);
+    Variable!(float, 0, HostStorage)loss =crossEntropy(ys, ts);
+    float acc = accuracy(ys, ts);
+    model.zeroGrad();
+    loss.backward();
+    optimizer.update();
+  }
+}\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{grain is \alert{safe}}
+  \alert{function} is also statically typed and optimized.
+  \begin{lstlisting}[language=D,basicstyle=\footnotesize\ttfamily]
+struct Sigmoid(T, size_t dim) {
+  Variable!(T, dim, HostStorage) y;
+  // D compiler guarantees that nothing throws exception
+  nothrow forward(Variable!(T, dim, HostStorage) x) {
+    auto y = x.sliced.map!(a => tanh(a * 0.5) * 0.5 + 0.5)
+              .slice.variable(x.requiresGrad);
+    if (x.requiresGrad) this.y = y;
+    return y;
+  }
+  nothrow backward(Variable!(T, dim, HostStorage) gy) {
+    auto ys = this.y.sliced;
+    return slice((1.0 - ys) * ys * gy.sliced).variable;
+  }
+  mixin FunctionCommon; // inject type checking
+}\end{lstlisting}
+\end{frame}
+
+\begin{frame}{grain is \alert{safe}}
+  \begin{alertblock}{Chainer/PyTorch issues}
+  \begin{itemize}
+  \item runtime overhead
+    \begin{itemize}
+    \item for-loop, dynamic dispatch, func call
+    \end{itemize}
+  \item runtime error:
+    \begin{itemize}
+    \item type error, exception safety, memory leak
+    \end{itemize}
+  \end{itemize}
+  \end{alertblock}
+  \begin{center}
+    \alert{D solved these issues} by compiler techniques and GC
+  \end{center}
+\end{frame}
+
+\begin{frame}[fragile]{grain is \alert{a lightweight language}}
+  Jupyter notebook support
+  \footnote{\alert{\url{https://github.com/ShigekiKarita/grain/blob/master/tutorial.ipynb}}}
+  \begin{figure}[b]
+	\centering
+	\includegraphics[height=0.6\textheight]{./fig/jupyterd.png}
+  \end{figure}
+  \scriptsize
+\end{frame}
+
+\begin{frame}[fragile]{grain is \alert{a lightweight library}}
+  smaller footprint library
+  \begin{table}
+	\begin{tabular}{lrrr}
+      \toprule
+      framework  & type        &   lines & mb \\
+      \midrule
+      \textbf{grain} & \textbf{static lib}  &  \textbf{12,431} & \textbf{0.6} \\
+      chainer    & python code & 162,106 & 6 \\
+      pytorch    & dynamic lib & 193,754 & 911 \\
+      tensorflow & dynamic lib & 130,475 & 285 \\
+      \bottomrule
+	\end{tabular}
+  \end{table}
+  smaller exe file (MNIST : 1.8MB, CIFAR: 2.3MB)
+\end{frame}
+
+\begin{frame}{grain is \alert{fast}}
+    \begin{table}
+	\begin{tabular}{lllrr}
+      \toprule
+      task & backend  & framework & train (mb/s) & test (mb/s) \\
+      \midrule
+      mnist & CUDA & grain      &  \textbf{300} & \textbf{-} \\
+            &      & chainer    & - & - \\
+            &      & pytorch    & 200 & - \\
+            & CPU  & grain      &  \textbf{90} & \textbf{-} \\
+            &      & chainer    & - & - \\
+            &      & pytorch    & 80 & - \\
+      \midrule
+      ptb   & CUDA & grain      &  \textbf{-} & \textbf{-} \\
+            &      & pytorch    & - & - \\
+      \bottomrule
+	\end{tabular}
+    \end{table}
+    \begin{itemize}
+      \item grain 0.0.10, chainer 4.4.0,  pytorch 0.4.1, CUDA9.2, CUDNN7
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{summary} % Thank you for your attention}
+  \large
+  grain: deep learning framework for D language
+  \vspace{1em}
+  \begin{itemize}
+    \large
+  \item \textbf{DYNAMIC}: like chainer and pytorch
+  \item \textbf{SAFE}: statically typed variable and function
+  \item \textbf{LIGHT}: simple like Python, small like C++
+  \item \textbf{FAST}: mir and CUDA backend
+  \end{itemize}
+\end{frame}
+
+{
+\usebackgroundtemplate{%
+  \begin{picture}(300,300)(-180, -150)
+  \includegraphics[height=0.5\paperheight]{fig/grain2.pdf}
+  \end{picture}
+}
+
+\begin{frame}{} % Thank you for your attention}
+    %% \begin{alertblock}{grain: deep learning framework for D language}
+    %% \begin{itemize}
+    %% \item \textbf{DYNAMIC}: like chainer and pytorch
+    %% \item \textbf{SAFE}: statically typed variable and function
+    %% \item \textbf{LIGHT}: simple as Python, small as C++
+    %% \item \textbf{FAST}: mir and CUDA backend
+    %% \end{itemize}
+  %% \end{alertblock}
+  \vspace*{10em}
+    \begin{center}
+      \large
+      CONTRIBUTION IS WELCOME!
+      \\
+      \alert{\url{https://github.com/ShigekiKarita/grain}}
+    \end{center}
+\end{frame}
+}
+
+\begin{frame}{examples}
+  \begin{itemize}
+  \item Image recognition (mnist, cifar)
+  \item Language modeling (shakespere, ptb)
+  \item WIP
+  \begin{itemize}
+  \item Reinforcement learning (cartpole)
+  \item Speech recognition (librispeech)
+  \item Machine translation (anki)
+  \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{future work}
+  \begin{itemize}
+  \item probabilistic programming
+  \item lazy evaluation mode
+  \item low resource environment (RasberryPi)
+  \end{itemize}
+\end{frame}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{frame}
+%% %\frametitle{References}
+%% % This prints the bibliography on the slide
+	
+%% \begin{small}
+%% \printbibliography
+%% \end{small}
+%% \end{frame}
+
+\end{document}
+

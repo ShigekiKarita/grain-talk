@@ -1,0 +1,139 @@
+%% %% only for xelatex
+%% \usepackage{fontspec}
+%% \usepackage{xeCJK}
+%% %\setCJKmainfont{MS PGothic}
+%% \setCJKmainfont{MS Mincho}
+%% \setCJKsansfont{MS Gothic}
+%% \setCJKmonofont{MS Gothic}
+
+\usetheme{default}
+%\usetheme{Madrid}
+%\usetheme{metropolis}
+
+\setbeamerfont{title}{size*={32}{38}}%
+\setbeamerfont{author}{size*={14}{16}}%
+\setbeamerfont{institute}{size*={13}{15}}%
+
+\setbeamertemplate{title page}{}
+\addtobeamertemplate{title page}{%
+  \begin{beamercolorbox}[right,rightskip=\the\dimexpr\beamer@leftmargin-0.3cm\relax]{title}%
+    % TODO instead of newlines, use margin
+    %\vspace{-10em}
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \newline%
+    \usebeamerfont{title}\textbf{\inserttitle}\newline\newline
+    \usebeamerfont{normal text}\textit{\insertsubtitle}\newline\newline%
+    \newline\newline%
+    %\usebeamerfont{author}\insertauthor\newline\newline%
+    \usebeamerfont{institute}\insertinstitute\newline\newline%
+    \usebeamerfont{normal text}\insertdate%
+  \end{beamercolorbox}
+}
+
+% TODO option で center なタイトルを選ぶ
+\setbeamertemplate{frametitle}{%
+  \vspace{0.5em}
+  \insertframetitle%
+}
+\setbeamerfont{frametitle}{size={\fontsize{19}{14}}}
+
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{navigation symbols}{}{%
+    \usebeamerfont{footline}%
+    \usebeamercolor[fg]{footline}%
+    %% {\ifnum\value{page}=1%
+    %%     {}%
+    %%     \else%
+    %%     {\insertframenumber}%
+    %% \fi}%
+    \hspace{.5em}%
+    \vspace{.5em}
+}
+
+\setbeamertemplate{framesubtitle}
+{\underline{\insertframesubtitle}
+}
+\setbeamerfont{framesubtitle}{series=\bfseries}
+
+\setbeamertemplate{framesubsubtitle}
+{\underline{\insertframesubsubtitle}
+}
+
+%% \setbeamertemplate{enumerate item}{}
+%% \addtobeamertemplate{enumerate item}{}{%
+%%     \usebeamerfont{normal text}%
+%%     \usebeamercolor[fg]{normal text}%
+%%     {(}\insertenumlabel{)}
+%% }
+
+%% \setbeamertemplate{enumerate subitem}{}
+%% \addtobeamertemplate{enumerate subitem}{}{%
+%%     \usebeamerfont{normal text}%
+%%     \usebeamercolor[fg]{normal text}%
+%%     {(}\Alph{enumii}{)}
+%% }
+
+%% \setbeamertemplate{enumerate subsubitem}{}
+%% \addtobeamertemplate{enumerate subsubitem}{}{%
+%%     \usebeamerfont{normal text}%
+%%     \usebeamercolor[fg]{normal text}%
+%%     {(}\alph{enumiii}{)}
+%% }
+
+\setbeamercolor{footline}{fg=black}
+\setbeamerfont{footline}{size={\fontsize{12}{12}}}
+
+\setbeamerfont{block body}{size={\fontsize{12}{12}}}
+
+\setbeamerfont{item}{size={\fontsize{12}{12}}}
+
+\setbeamerfont{itemize item}{size*={12}{12}}
+\setbeamerfont{itemize subitem}{size*={12}{12}}
+\setbeamerfont{itemize subsubitem}{size*={12}{12}}
+
+\setbeamerfont{itemize/enumerate body}{size*={12}{12}}
+\setbeamerfont{itemize/enumerate subbody}{size*={12}{12}}
+\setbeamerfont{itemize/enumerate subsubbody}{size*={12}{12}}
+
+\setbeamercolor{alerted text}{fg=red}
+\newcommand{\boxalert}[1]{{%
+    \usebeamerfont{normal text}%
+    \usebeamercolor[fg]{alerted text}%
+    \underline{#1}
+}}
+
+\setbeamercolor{example text}{fg=green}
+\newcommand{\boxexample}[1]{{%
+    \usebeamerfont{normal text}%
+    \usebeamercolor[fg]{example text}%
+    \underline{#1}
+}}
+
+%\setbeamerfont{enumerate item}{size={\fontsize{12}{12}}}
+
+%\setbeamerfont{block title}{size={\fontsize{12}{12}}}
+
+\setbeamerfont{normal text}{size={\fontsize{12}{12}}}
+
+
+\setbeamertemplate{footline}[text line]{%
+  \parbox{\linewidth}{
+    \hfill\vspace{0.5em}
+    %\hfill Boost Software License 1.0.
+    %\vspace*{0.5em}
+    {\ifnum\value{page}=1%
+        {}%
+        \else%
+        {\insertframenumber}%
+        \fi}%
+}}
+
+%\setbeamertemplate{navigation symbols}{}

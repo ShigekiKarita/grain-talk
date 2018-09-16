@@ -5,11 +5,11 @@
 LATEXMK_OPT :=
 TARGET := slide
 
-lualatex: $(TARGET).tex refs.bib
-	latexmk $(TARGET) -gg -pdflua $(LATEXMK_OPT)
-
 updatex: $(TARGET).tex refs.bib
 	latexmk $(TARGET) -gg -pdfdvi $(LATEXMK_OPT)
+
+lualatex: $(TARGET).tex refs.bib
+	latexmk $(TARGET) -gg -pdflua $(LATEXMK_OPT)
 
 xelatex: $(TARGET).tex refs.bib
 	latexmk $(TARGET) -gg -pdfxe $(LATEXMK_OPT)

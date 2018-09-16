@@ -1,0 +1,12 @@
+*
+
+!*/
+!*.pdf
+!*.png
+!*.tex
+!*.bib
+!*.sty
+
+!Makefile
+!.latexmkrc
+!.gitignore

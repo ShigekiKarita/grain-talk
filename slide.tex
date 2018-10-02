@@ -46,7 +46,7 @@
 
 \lstset{ %
   frame=single,
-  backgroundcolor={\color{white}\pgfsetfillopacity{0.7}},
+  backgroundcolor={\color{black}}, %\pgfsetfillopacity{0.85}},
   %xleftmargin=.05\textwidth, %xrightmargin=.1\textwidth,
   %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
   %basicstyle=\tiny\ttfamily,                % the size of the fonts that are used for the code
@@ -54,19 +54,19 @@
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
   captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{mygreen},    % comment style
+  commentstyle=\color{OwlGreen},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
   % frame=single,	              % adds a frame around the code
   keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{mymauve},       % keyword style
+  keywordstyle=\color{OwlRed},       % keyword style
   language={D},                 % the language of the code
   %morekeywords={*,...},            % if you want to add more keywords to the set
   numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
   numbersep=5pt,                   % how far the line-numbers are from the code
   numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  rulecolor=\color{mygray},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
   showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
   showstringspaces=false,          % underline spaces within strings only
   showtabs=false,                  % show tabs within strings adding particular underscores
@@ -76,12 +76,13 @@
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
 
+
+
 \AtBeginSection[]{
     \begin{frame}
         \tableofcontents[currentsection]
     \end{frame}
 }
-
 
 %\renewcommand{\kanjifamilydefault}{\gtdefault}% 既定をゴシック体に
 \usepackage{default}
@@ -98,40 +99,74 @@
 \usepackage{theme}
 
 %\usecolortheme{dove}
-\usecolortheme{orchid}
-\usepackage{transparent}
+% \usecolortheme{orchid}
+% \usepackage{transparent}
+% \usepackage{tikz}
+\usecolortheme{owl}
 
 %% NOTE: colors http://www2.informatik.uni-freiburg.de/~frank/latex-kurs/latex-kurs-3/farben/Extra-Farben.pdf
-\setbeamertemplate{frametitle}{\vspace{0.5em}\color{black}\insertframetitle}
-\setbeamercolor*{normal text}{fg=black,bg=white}
-\setbeamercolor*{alerted text}{fg=Plum}
-\setbeamercolor*{example text}{fg=MidnightBlue} % VioletRed}
-\setbeamercolor*{structure}{fg=black}
-%% setting for blocks without box
-%\setbeamercolor*{block title}{parent=structure}
-\setbeamerfont{block title}{size={}}
+%% \setbeamertemplate{frametitle}{\vspace{0.5em}\color{black}\insertframetitle}
+%% \setbeamercolor*{normal text}{fg=black,bg=white}
+%% \setbeamercolor*{alerted text}{fg=Plum}
+%% \setbeamercolor*{example text}{fg=MidnightBlue} % VioletRed}
+%% \setbeamercolor*{structure}{fg=black}
+%% %% setting for blocks without box
+%% %\setbeamercolor*{block title}{parent=structure}
+%% \setbeamerfont{block title}{size={}}
 
 
 %\usetheme{Madrid}
 \title{grain}
-\subtitle{D Language Library for Deep Learning}
+\subtitle{D Language for Deep Learning}
 \date{4. Oct. 2018}
 \author{Shigeki Karita}
 \institute{ML Meetup KANSAI \#3 LT}
 \begin{document}
 
 % タイトル用の背景
+\setbeamercolor{bgcolor}{fg=white,bg=black}
+%% \setbeamercolor{normal text}{fg=white,bg=black!90}
+%% \setbeamertemplate{frametitle}{\vspace{0.5em}\color{white}\insertframetitle}
+%% \setbeamercolor{normal text}{fg=white,bg=black!90}
+%% \setbeamercolor{alerted text}{fg=Plum}
+%%
+\setbeamercolor{example text}{fg=Cerulean} % VioletRed}
+%% \setbeamercolor{structure}{fg=white}
+%% \setbeamercolor{framesubtitle}{fg=white}
+%% \setbeamercolor{block title}{parent=structure,bg=black!60}
+%% \setbeamercolor{block body}{fg=black,bg=black!10}
+%% \setbeamercolor{block title alerted}{parent=alerted text,bg=black!15}
+%%
+\setbeamercolor{block title example}{parent=example text,fg=Cerulean} %,bg=black!15}
+
+%% \setbeamercolor{item projected}{use=item,fg=black,bg=item.fg!35}
+
+%% \setbeamercolor*{palette primary}{use=structure,fg=structure.fg}
+%% \setbeamercolor*{palette secondary}{use=structure,fg=structure.fg!95!black}
+%% \setbeamercolor*{palette tertiary}{use=structure,fg=structure.fg!90!black}
+%% \setbeamercolor*{palette quaternary}{use=structure,fg=structure.fg!95!black,bg=black!80}
+
+
+%% setting for blocks without box
+%\setbeamercolor*{block title}{parent=structure}
+%\setbeamerfont{block title}{size={}}
+
+
 \usebackgroundtemplate{%
-  \begin{picture}(100,300)
-  \includegraphics[height=0.8\paperheight]{fig/grain2.pdf}
+  \begin{beamercolorbox}[wd=1.1\paperwidth,ht=\paperheight]{bgcolor}
+  \begin{picture}(400,400)(-30, -30)
+    \includegraphics[height=1.1\paperheight]{fig/grain2.pdf}
   \end{picture}
+  \end{beamercolorbox}
 }
 
 
 \maketitle
 
 \usebackgroundtemplate{%
-  \includegraphics[height=\paperheight]{fig/grain_more_opac.pdf}
+  \begin{beamercolorbox}[wd=1.1\paperwidth,ht=\paperheight]{bgcolor}
+    \includegraphics[height=\paperheight]{fig/grain_opac.pdf}
+  \end{beamercolorbox}
 }
 
 
@@ -141,24 +176,23 @@
 
 %\section{Why D}
 \begin{frame}{\alert{D L}anguage for \alert{D}eep \alert{L}earning}
-  \begin{alertblock}{great language}
+  \begin{alertblock}{language}
     \begin{itemize}
     \item \textbf{like C++}: fast, strongly typed, LLVM/GCC backend
-    \item \textbf{like Python}: simple, lightweight, jupyter support\footnote{\url{https://github.com/kaleidicassociates/jupyterd}}
+    \item \textbf{like Python}: simple, lightweight, jupyter support
     \end{itemize}
   \end{alertblock}
   %\pause
-  \begin{exampleblock}{great libraries}
+  \begin{exampleblock}{libraries\footnote{\url{https://github.com/libmir}}}
     \begin{itemize}
-    \item \textbf{mir}: N-D slice algorithm\footnote{\url{https://github.com/libmir/mir-algorithm}},
-      zero-cost numpy conversion\footnote{\url{https://github.com/ShigekiKarita/mir-pybuffer}}
-    \item \textbf{dcompute}: CUDA kernel DSL\footnote{\url{https://github.com/libmir/dcompute}}
+    \item \textbf{mir}: N-dim fast algorithm, numpy-like APIs
+    \item \textbf{dcompute}: CUDA kernel DSL
     \end{itemize}
   \end{exampleblock}
 \end{frame}
 
 \begin{frame}{grain}
-  \begin{alertblock}{deep learning framework for D language}
+  \begin{alertblock}{deep learning framework for D}
     \begin{itemize}
     \item \alert{\url{https://github.com/ShigekiKarita/grain}}
     \item boost software license 1.0
@@ -191,8 +225,8 @@ foreach (epoch; 0 .. 10) {
 }\end{lstlisting}
 \end{frame}
 
-\begin{frame}[fragile]{grain is \alert{dynamic}}
-like chainer \alert{but statically typed and optimized.}
+\begin{frame}[fragile]{grain is \alert{safe}}
+but statically typed and optimized.
   \begin{lstlisting}[language=D,basicstyle=\footnotesize\ttfamily]
 foreach (epoch; 0 .. 10) {
   foreach (i; niter.permutation) {
@@ -209,11 +243,11 @@ foreach (epoch; 0 .. 10) {
 \end{frame}
 
 \begin{frame}[fragile]{grain is \alert{safe}}
-  \alert{function} is also statically typed and optimized.
+  every function is statically typed and optimized.
   \begin{lstlisting}[language=D,basicstyle=\footnotesize\ttfamily]
 struct Sigmoid(T, size_t dim) {
   Variable!(T, dim, HostStorage) y;
-  // D compiler guarantees that nothing throws exception
+
   nothrow forward(Variable!(T, dim, HostStorage) x) {
     auto y = x.sliced.map!(a => tanh(a * 0.5) * 0.5 + 0.5)
               .slice.variable(x.requiresGrad);
@@ -229,7 +263,7 @@ struct Sigmoid(T, size_t dim) {
 \end{frame}
 
 \begin{frame}{grain is \alert{safe}}
-  \begin{alertblock}{Chainer/PyTorch issues}
+  \begin{alertblock}{Chainer/PyTorch issue}
   \begin{itemize}
   \item runtime overhead
     \begin{itemize}
@@ -241,12 +275,15 @@ struct Sigmoid(T, size_t dim) {
     \end{itemize}
   \end{itemize}
   \end{alertblock}
-  \begin{center}
-    \alert{D solved these issues} by compiler techniques and GC
-  \end{center}
+  \begin{exampleblock}{D solution}
+    \begin{itemize}
+    \item template based code generation
+    \item compile-time type/error checking
+    \end{itemize}
+  \end{exampleblock}
 \end{frame}
 
-\begin{frame}[fragile]{grain is \alert{a lightweight language}}
+\begin{frame}[fragile]{grain is \alert{a lightweight framework}}
   Jupyter notebook support
   \footnote{\alert{\url{https://github.com/ShigekiKarita/grain/blob/master/tutorial.ipynb}}}
   \begin{figure}[b]
@@ -256,49 +293,71 @@ struct Sigmoid(T, size_t dim) {
   \scriptsize
 \end{frame}
 
-\begin{frame}[fragile]{grain is \alert{a lightweight library}}
-  smaller footprint library
+\begin{frame}[fragile]{grain is \alert{a lightweight framework}}
+  smaller code and footprint
   \begin{table}
 	\begin{tabular}{lrrr}
       \toprule
-      framework  & type        &   lines & mb \\
+      framework   & code lines & lib size [mb] & lib type  \\
       \midrule
-      \textbf{grain} & \textbf{static lib}  &  \textbf{12,431} & \textbf{0.6} \\
-      chainer    & python code & 162,106 & 6 \\
-      pytorch    & dynamic lib & 193,754 & 911 \\
-      tensorflow & dynamic lib & 130,475 & 285 \\
+      \textbf{grain} &  \textbf{12,431} & \textbf{0.6}  & \textbf{static} \\
+      chainer    & 162,106 & 6 & python code \\
+      pytorch    & 193,754 & 911 &dynamic \\
+      tensorflow & 130,475 & 285 & dynamic  \\
       \bottomrule
 	\end{tabular}
   \end{table}
   smaller exe file (MNIST : 1.8MB, CIFAR: 2.3MB)
 \end{frame}
 
-\begin{frame}{grain is \alert{fast}}
+\begin{frame}{grain is as \alert{fast} as other frameworks}
     \begin{table}
 	\begin{tabular}{lllrr}
       \toprule
-      task & backend  & framework & train (mb/s) & test (mb/s) \\
+      task & backend  & framework & train iter/sec \\
       \midrule
-      mnist & CUDA & grain      &  \textbf{300} & \textbf{-} \\
-            &      & chainer    & - & - \\
-            &      & pytorch    & 200 & - \\
-            & CPU  & grain      &  \textbf{90} & \textbf{-} \\
-            &      & chainer    & - & - \\
-            &      & pytorch    & 80 & - \\
+      mnist & CUDA & grain      & 270 \\
+            &      & chainer    & 340 \\
+            &      & pytorch    & 200 \\
       \midrule
-      ptb   & CUDA & grain      &  \textbf{-} & \textbf{-} \\
-            &      & pytorch    & - & - \\
+            & CPU  & grain      & 160 \\
+            &      & chainer    &  95 \\
+            &      & pytorch    & 110 \\
       \bottomrule
 	\end{tabular}
     \end{table}
     \begin{itemize}
-      \item grain 0.0.10, chainer 4.4.0,  pytorch 0.4.1, CUDA9.2, CUDNN7
+      \item chainer 4.5.0, pytorch 0.4.1, MKL2018, CUDA9, CUDNN7
+      \item pytorch is built from source. modified official scripts to be fair.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{summary} % Thank you for your attention}
+\begin{frame}{grain is as \alert{fast} as other frameworks}
+    \begin{table}
+	\begin{tabular}{lllrr}
+      \toprule
+      task & backend  & framework & train iter/sec \\
+      \midrule
+      ptb   & CUDA & grain      & 3.1  \\
+            &      & chainer    & 3.4 \\
+            &      & pytorch    & 12 \\
+      \midrule
+            & CPU  & grain      & 1.2 \\
+            &      & chainer    & 2.1 \\
+            &      & pytorch    & 2.4 \\
+      \bottomrule
+	\end{tabular}
+    \end{table}
+    \begin{itemize}
+      \item chainer 4.5.0, pytorch 0.4.1, MKL2018, CUDA9, CUDNN7
+      \item pytorch is built from source. modified official scripts to be fair.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{grain: summary} % Thank you for your attention}
   \large
-  grain: deep learning framework for D language
+  \textbf{deep learning framework for \alert{D language}}
   \vspace{1em}
   \begin{itemize}
     \large
@@ -310,12 +369,13 @@ struct Sigmoid(T, size_t dim) {
 \end{frame}
 
 {
-\usebackgroundtemplate{%
-  \begin{picture}(300,300)(-180, -150)
-  \includegraphics[height=0.5\paperheight]{fig/grain2.pdf}
-  \end{picture}
+  \usebackgroundtemplate{%
+    \begin{beamercolorbox}[wd=1.1\paperwidth,ht=\paperheight]{bgcolor}
+      \begin{picture}(300,300)(-200, -100)
+        \includegraphics[height=0.5\paperheight]{fig/grain2.pdf}
+      \end{picture}
+    \end{beamercolorbox}
 }
-
 \begin{frame}{} % Thank you for your attention}
     %% \begin{alertblock}{grain: deep learning framework for D language}
     %% \begin{itemize}
@@ -328,7 +388,7 @@ struct Sigmoid(T, size_t dim) {
   \vspace*{10em}
     \begin{center}
       \large
-      CONTRIBUTION IS WELCOME!
+      Thanks for your attention
       \\
       \alert{\url{https://github.com/ShigekiKarita/grain}}
     \end{center}

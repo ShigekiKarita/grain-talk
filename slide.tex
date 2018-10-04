@@ -27,7 +27,7 @@
 \newtoggle{InString}{}% Keep track of if we are within a string
 \togglefalse{InString}% Assume not initally in string
 
-\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{Cerulean}#1}}%
+\newcommand*{\ColorIfNotInString}[1]{\iftoggle{InString}{#1}{\color{mygreen}#1}}%
 \newcommand*{\ProcessQuote}[1]{#1\iftoggle{InString}{\global\togglefalse{InString}}{\global\toggletrue{InString}}}%
 \lstset{literate=%
     {"}{{{\ProcessQuote{"}}}}1% Disable coloring within double quotes
@@ -46,7 +46,7 @@
 
 \lstset{ %
   frame=single,
-  backgroundcolor={\color{black}}, %\pgfsetfillopacity{0.85}},
+  backgroundcolor={\color{black}\pgfsetfillopacity{0.85}},
   %xleftmargin=.05\textwidth, %xrightmargin=.1\textwidth,
   %backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}; should come as last argument
   %basicstyle=\tiny\ttfamily,                % the size of the fonts that are used for the code
@@ -54,7 +54,7 @@
   breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
   breaklines=true,                 % sets automatic line breaking
   captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{Cerulean},    % comment style
+  commentstyle=\color{OwlGreen},    % comment style
   deletekeywords={...},            % if you want to delete keywords from the given language
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
@@ -208,6 +208,16 @@
   \end{exampleblock}
 \end{frame}
 
+\begin{frame}[fragile]{grain}
+  documentation
+  \footnote{\alert{\url{https://shigekikarita.github.io/grain/grain.html}}}
+  \begin{figure}[b]
+	\centering
+	\includegraphics[height=0.6\textheight]{./fig/doc.png}
+  \end{figure}
+  \scriptsize
+\end{frame}
+
 \begin{frame}[fragile]{grain is \alert{dynamic}}
 like chainer ...
   \begin{lstlisting}[language=D]
@@ -264,6 +274,16 @@ struct Sigmoid(T, size_t dim) {
 
 \begin{frame}{grain is \alert{safe}}
   \begin{alertblock}{Chainer/PyTorch issue}
+  \begin{figure}[b]
+	\centering
+	\includegraphics[height=0.6\textheight]{./fig/ipython.png}
+  \end{figure}
+  \end{alertblock}
+\end{frame}
+
+
+\begin{frame}{grain is \alert{safe}}
+  \begin{alertblock}{Chainer/PyTorch issue}
   \begin{itemize}
   \item runtime overhead
     \begin{itemize}
@@ -271,14 +291,14 @@ struct Sigmoid(T, size_t dim) {
     \end{itemize}
   \item runtime error:
     \begin{itemize}
-    \item type error, exception safety, memory leak
+    \item type error, dim mismatch, exception, memory leak
     \end{itemize}
   \end{itemize}
   \end{alertblock}
   \begin{exampleblock}{D solution}
     \begin{itemize}
-    \item template based code generation
-    \item compile-time type/error checking
+    \item template based compile-time code generation (static if/foreach)
+    \item compile-time type/dim/exception checking
     \end{itemize}
   \end{exampleblock}
 \end{frame}
